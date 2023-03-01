@@ -16,15 +16,14 @@ const RegisterForm = () => {
     handleSubmit, 
     formState: {errors},
   } = useForm<IRegisterFormValues>(
-    // {
-    //   resolver: yupResolver(registerFormSchema)
-    // }
+    {
+      resolver: yupResolver(registerFormSchema)
+    }
   );
 
   const submit: SubmitHandler<IRegisterFormValues> = (formData) => {
     userRegister(formData);
   }
-  console.log(submit)
 
   return (
     <StyledForm onSubmit={handleSubmit(submit)}>

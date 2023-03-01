@@ -15,22 +15,21 @@ const LoginForm = () => {
     register, 
     handleSubmit, 
     formState: { errors },
+
   } = useForm<ILoginFormValues>(
     {
       resolver: yupResolver(loginFormSchema)
     }
   );
-  console.log(useForm)
       
   const submit: SubmitHandler<ILoginFormValues> = (formData) => {
     userLogin(formData);
-    console.log(formData)
   }
   
   return (
     <StyledForm onSubmit={handleSubmit(submit)}>
       <Input type='email' label='Email' register={register("email")} error={errors.email} />
-      <Input type='password' label='Password' register={register("password")} error={errors.email} />
+      <Input type='password' label='Password' register={register("password")} error={errors.password} />
       <StyledButton $buttonSize='default' $buttonStyle='green' type='submit'>
         Entrar
       </StyledButton>

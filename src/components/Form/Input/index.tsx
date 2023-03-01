@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { StyledFieldset } from './style';
 import { StyledTextField } from '../../../styles/form';
 import { StyledParagraph } from '../../../styles/typography';
 
@@ -12,8 +12,8 @@ interface IInputProps{
 
 
 const Input = ({ label, type, register, error }: IInputProps) => (
-  <StyledTextField>
-    <TextField type={type} label={label} {...register}/>
+  <StyledFieldset>
+    <StyledTextField type={type} label={label} {...register}/>
     {
       error
       ?
@@ -21,7 +21,7 @@ const Input = ({ label, type, register, error }: IInputProps) => (
       :
       null
     }
-  </StyledTextField>
+  </StyledFieldset>
 );
 
 export default Input;
