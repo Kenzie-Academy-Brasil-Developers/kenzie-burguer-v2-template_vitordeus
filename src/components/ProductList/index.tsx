@@ -7,7 +7,7 @@ const ProductList = () => {
   const { searchProductsList } = useContext(UserContext);
 
   return (
-    <StyledProductList>
+    <StyledProductList >
       {searchProductsList.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

@@ -10,7 +10,7 @@ export const StyledProductCard = styled.li`
   }
 
   .imageBox {
-    background: ${({ theme }) => theme.colors.gray0};
+    /* background: ${({ theme }) => theme.colors.gray0}; */
 
     img {
       width: 100%;
@@ -25,6 +25,7 @@ export const StyledProductCard = styled.li`
     flex-direction: column;
     gap: 10px;
     padding: 23px 20px;
+    background: ${({ theme }) => theme.colors.gray0};
 
     .price {
       font-weight: 600;

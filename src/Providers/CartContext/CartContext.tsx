@@ -40,7 +40,7 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
       if ( product.qty === 1 ) {
         const newCart = cart.filter((productFiltered) => productFiltered.id !== product.id);
         setCart(newCart)
-        toast.success('Produto removido')
+        toast.warning('Produto removido')
       } else {
         const newList = cart.map((productMaped) => {
           if (product.id === productMaped.id && productMaped.qty !== undefined){
@@ -50,9 +50,9 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
         }
         )
         setCart(newList)
-        toast.success('Produto removido')
+        toast.warning('Produto removido')
       }
-    } return(toast.error("Erro ao remover"))
+    } return("")
   };
 
   const removeAllFromCart = () => {
@@ -63,7 +63,7 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
 
   const rmvAllOfTheSameProduct = (id: number) => {
     const newCart = cart.filter((product) => product.id !== id);
-    toast.success('Produto removido')
+    toast.warning('Produto(s) removido(s)')
     setCart(newCart);
   }
 

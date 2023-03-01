@@ -14,12 +14,12 @@ export interface IRegisterFormValues{
   name: string;
 }
 
-// export interface IRegisterInputValues{
-//   name: string;
-//   email: string;
-//   password: string;
-//   confirmpassword: string;
-// }
+export interface IRegisterInputValues{
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 export interface  ILoginFormValues{
   email: string;
@@ -66,5 +66,8 @@ export interface IUserContext{
   setFilteredProducts: React.Dispatch<React.SetStateAction<string | IProductsFormValues>>;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  searchProductsList: IProductsFormValues[]
+  searchProductsList: IProductsFormValues[];
+  clearSearch: () => void;
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
 }

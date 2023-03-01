@@ -18,4 +18,8 @@ export const GlobalStyles = createGlobalStyle`
     display: unset;
     position: unset;
   }
+
+  #dark{
+        background-color: #0d0d0d;
+    }
 `;

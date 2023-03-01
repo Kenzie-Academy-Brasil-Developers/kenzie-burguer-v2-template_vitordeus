@@ -16,6 +16,10 @@ import { api } from '../../services/api';
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
+  const localStorageDarkMode = localStorage.getItem(
+    "@kenzie:hamburgueriaDarkMode"
+  );
+
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<IUser | null>(null);
   const [products, setProducts] = useState<IProductsFormValues[]>([]);
@@ -23,6 +27,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     IProductsFormValues | string | ''
   >('');
   const [searchValue, setSearchValue] = useState('');
+  const [darkMode, setDarkMode] = useState<boolean>(
+    localStorageDarkMode ? JSON.parse(localStorageDarkMode) : "false"
+  );
 
   const searchProductsList = products.filter((product) =>
     filteredProducts === ''
@@ -105,6 +112,24 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     navigate('/');
   };
 
+  const clearSearch = () => {
+    const cleanSearch = "";
+    setFilteredProducts(cleanSearch);
+  };
+
+  useEffect(() => {
+    localStorage.setItem(
+      "@kenzie:hamburgueriaDarkMode",
+      JSON.stringify(darkMode)
+    );
+
+    if(!darkMode){
+      toast("White Mode Ativado")
+    } else{
+      toast("Dark Mode Ativado")
+    }
+  }, [darkMode]);
+
   return (
     <UserContext.Provider
       value={{
@@ -119,6 +144,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         searchValue,
         setSearchValue,
         searchProductsList,
+        clearSearch,
+        darkMode, 
+        setDarkMode
       }}
     >
       {children}
