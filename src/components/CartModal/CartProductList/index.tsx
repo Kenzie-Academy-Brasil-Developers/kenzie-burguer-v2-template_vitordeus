@@ -9,10 +9,13 @@ const CartProductList = () => {
   const { cart, removeAllFromCart } = useContext(CartContext);
 
   const values: number[] = [];
+  let prodQty = 0;
+  
   cart.forEach((product) => {
     const { price } = product;
     const quantity = product.qty;
     if (quantity !== undefined) {
+      prodQty += quantity
       const newValues = quantity * price;
       values.push(newValues);
     }
@@ -33,7 +36,7 @@ const CartProductList = () => {
 
       <div className='totalBox'>
         <StyledParagraph>
-          <strong>Total</strong>
+          <strong>Total({prodQty})</strong>
         </StyledParagraph>
         <StyledParagraph className='total'>
           R${sum().toFixed(2)}
