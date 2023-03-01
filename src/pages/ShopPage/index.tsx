@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { StyledShopPage } from './style';
 import CartModal from '../../components/CartModal';
 import Header from '../../components/Header';
@@ -9,7 +10,24 @@ import { UserContext } from '../../Providers/UserContext/UserContext';
 
 const ShopPage = () => {
   const { showModal } = useContext(CartContext);
-  const { darkMode } = useContext(UserContext);
+  const { darkMode, userLoad } = useContext(UserContext);
+
+  useEffect(() => {
+    userLoad();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "@kenzie:hamburgueriaDarkMode",
+      JSON.stringify(darkMode)
+    );
+
+    if(!darkMode){
+      toast("White Mode Ativado")
+    } else{
+      toast("Dark Mode Ativado")
+    }
+  }, [darkMode]);
 
   return (
     <StyledShopPage>

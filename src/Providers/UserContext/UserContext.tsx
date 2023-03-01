@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios, { isAxiosError } from 'axios';
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       navigate('/');
     }
     try {
-      const response = await api.get<IProductsFormValues[]>('/products', {
+      const response = await api.get('/products', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,10 +60,6 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       localStorage.removeItem('@kenziebook:@TOKEN');
     }
   };
-
-  useEffect(() => {
-    userLoad();
-  }, []);
 
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
@@ -94,6 +90,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       );
       setUser(response.data.user);
       localStorage.setItem('@kenziebook:@TOKEN', response.data.accessToken);
+      // console.log('@kenziebook:@TOKEN', response.data.accessToken);
       toast.success('Login realizado com sucesso!');
       navigate('/shop');
     } catch (error) {
@@ -117,19 +114,6 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     setFilteredProducts(cleanSearch);
   };
 
-  useEffect(() => {
-    localStorage.setItem(
-      "@kenzie:hamburgueriaDarkMode",
-      JSON.stringify(darkMode)
-    );
-
-    if(!darkMode){
-      toast("White Mode Ativado")
-    } else{
-      toast("Dark Mode Ativado")
-    }
-  }, [darkMode]);
-
   return (
     <UserContext.Provider
       value={{
@@ -146,7 +130,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         searchProductsList,
         clearSearch,
         darkMode, 
-        setDarkMode
+        setDarkMode,
+        userLoad
       }}
     >
       {children}

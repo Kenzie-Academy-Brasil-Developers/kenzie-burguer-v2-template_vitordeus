@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { StyledLoginPage } from './style';
 import LoginForm from '../../components/Form/LoginForm';
 import IllustrationBox from '../../components/IllustrationBox';
@@ -5,7 +7,17 @@ import { StyledButtonLink } from '../../styles/button';
 import { StyledContainer, StyledGridBox } from '../../styles/grid';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
 
-const LoginPage = () => (
+const LoginPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('@kenziebook:@TOKEN');
+      if (token !== null) {
+        navigate('/shop')
+      }
+  },[])
+
+  return(
   <StyledLoginPage>
     <StyledContainer>
       <div className='flexGrid'>
@@ -33,6 +45,7 @@ const LoginPage = () => (
       </div>
     </StyledContainer>
   </StyledLoginPage>
-);
+  )
+};
 
 export default LoginPage;

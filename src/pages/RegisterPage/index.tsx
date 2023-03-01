@@ -1,11 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { StyledRegisterPage } from './style';
 import RegisterForm from '../../components/Form/RegisterForm';
 import IllustrationBox from '../../components/IllustrationBox';
 import { StyledContainer, StyledGridBox } from '../../styles/grid';
 import { StyledTitle } from '../../styles/typography';
 
-const RegisterPage = () => (
+const RegisterPage = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('@kenziebook:@TOKEN');
+      if (token !== null) {
+        navigate('/shop')
+      }
+  },[])
+
+  return(
   <StyledRegisterPage>
     <StyledContainer>
       <div className='flexGrid'>
@@ -27,6 +39,7 @@ const RegisterPage = () => (
       </div>
     </StyledContainer>
   </StyledRegisterPage>
-);
+  )
+};
 
 export default RegisterPage;

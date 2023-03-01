@@ -69,5 +69,6 @@ export interface IUserContext{
   searchProductsList: IProductsFormValues[];
   clearSearch: () => void;
   darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  userLoad: () => Promise<void>
 }
