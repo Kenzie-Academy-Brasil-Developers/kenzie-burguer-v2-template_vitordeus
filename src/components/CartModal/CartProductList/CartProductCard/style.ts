@@ -37,6 +37,25 @@ export const StyledCartProductCard = styled.li`
       padding-right: 20px;
       gap: 20px;
 
+      .nameBox{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 15px;
+
+        .quantityBox{
+          display: flex;
+          padding: 5px;
+          gap: 30px;
+
+          button{
+            color: red;
+            font-size: 1.15rem;
+            font-weight: 700;
+          }
+        }
+      }
+
       button{
         background: transparent;
         opacity: .4;

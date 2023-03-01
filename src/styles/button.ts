@@ -32,6 +32,11 @@ export const StyledButtonCSS = css<IStyledButtonProps>`
           padding: 0 20px;
           height: 40px;
         `;
+        default:
+          return css`
+          padding: 0 30px;
+          height: 60px;
+        `;
     }
   }}
 
@@ -52,6 +57,14 @@ export const StyledButtonCSS = css<IStyledButtonProps>`
           &:hover {
             color: ${theme.colors.gray100};
             background: ${theme.colors.gray300};
+          }
+        `;
+        default:
+          return css`
+          color: ${theme.colors.white};
+          background: ${theme.colors.primary};
+          &:hover {
+            opacity: 0.5;
           }
         `;
     }
