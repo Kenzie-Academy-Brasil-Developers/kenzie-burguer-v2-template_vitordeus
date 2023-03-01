@@ -74,7 +74,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       navigate('/shop');
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        toast.error(error.message);
+        toast.error('Este e-mail já está cadastrado');
       }
     } finally {
       setLoading(false);
@@ -95,7 +95,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       navigate('/shop');
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message);
+        toast.error("Login ou senha incorretos!");
       }
     } finally {
       setLoading(false);
