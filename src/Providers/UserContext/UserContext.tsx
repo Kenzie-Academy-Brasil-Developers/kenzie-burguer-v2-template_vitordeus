@@ -90,7 +90,6 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       );
       setUser(response.data.user);
       localStorage.setItem('@kenziebook:@TOKEN', response.data.accessToken);
-      // console.log('@kenziebook:@TOKEN', response.data.accessToken);
       toast.success('Login realizado com sucesso!');
       navigate('/shop');
     } catch (error) {
