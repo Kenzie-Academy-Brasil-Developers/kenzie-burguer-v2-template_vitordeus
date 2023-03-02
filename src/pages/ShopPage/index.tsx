@@ -12,10 +12,6 @@ const ShopPage = () => {
   const { showModal } = useContext(CartContext);
   const { darkMode } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   userLoad();
-  // }, []);
-
   useEffect(() => {
     localStorage.setItem(
       "@kenzie:hamburgueriaDarkMode",

@@ -51,14 +51,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
           },
         });
         setProducts(response.data);
-        // navigate('/shop');
       } catch (error) {
-        // console.log("qualquer coisa")
-        // if(axios.isAxiosError(error)){
-        //   toast.error(error.message)
-        // };
         localStorage.removeItem('@kenziebook:@TOKEN');
-        // localStorage.clear();
         navigate('/');
       }
     };
