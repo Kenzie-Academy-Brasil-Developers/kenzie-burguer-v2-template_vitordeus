@@ -35,10 +35,6 @@ export interface IProductsFormValues{
   img: string;
 }
 
-// export interface IArrayProductsFormValues{
-//   products: IProductsFormValues[];
-// }
-
 export interface IProductProps{
   product: IProductsFormValues
 }
