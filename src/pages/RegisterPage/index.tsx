@@ -10,12 +10,12 @@ const RegisterPage = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('@kenziebook:@TOKEN');
-      if (token !== null) {
-        navigate('/shop')
-      }
-  },[])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('@kenziebook:@TOKEN');
+  //     if (token !== null) {
+  //       navigate('/shop')
+  //     }
+  // },[])
 
   return(
   <StyledRegisterPage>

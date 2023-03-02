@@ -66,5 +66,4 @@ export interface IUserContext{
   clearSearch: () => void;
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-  userLoad: () => Promise<void>
 }

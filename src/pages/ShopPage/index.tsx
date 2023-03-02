@@ -10,11 +10,11 @@ import { UserContext } from '../../Providers/UserContext/UserContext';
 
 const ShopPage = () => {
   const { showModal } = useContext(CartContext);
-  const { darkMode, userLoad } = useContext(UserContext);
+  const { darkMode } = useContext(UserContext);
 
-  useEffect(() => {
-    userLoad();
-  }, []);
+  // useEffect(() => {
+  //   userLoad();
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem(

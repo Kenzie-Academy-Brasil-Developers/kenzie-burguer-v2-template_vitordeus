@@ -1,16 +1,16 @@
 import { Outlet, Navigate } from 'react-router-dom';
 
-const OpenRotes = () => {
+const ProtectedRotes = () => {
 
   const token = localStorage.getItem('@kenziebook:@TOKEN')
 
   return(
     token
     ?
-    <Navigate to='/shop' />
-    :
     <Outlet/>
+    :
+    <Navigate to='/' />
   )
 }
 
-export default OpenRotes;
+export default ProtectedRotes;

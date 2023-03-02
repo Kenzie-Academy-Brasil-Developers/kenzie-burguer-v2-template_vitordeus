@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios, { isAxiosError } from 'axios';
@@ -16,20 +16,22 @@ import { api } from '../../services/api';
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
+  const navigate = useNavigate();
   const localStorageDarkMode = localStorage.getItem(
     "@kenzie:hamburgueriaDarkMode"
-  );
-
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<IUser | null>(null);
-  const [products, setProducts] = useState<IProductsFormValues[]>([]);
+    );
+    
+    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState<IUser | null>(null);
+    const [products, setProducts] = useState<IProductsFormValues[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<
-    IProductsFormValues | string | ''
+  IProductsFormValues | string | ''
   >('');
   const [searchValue, setSearchValue] = useState('');
   const [darkMode, setDarkMode] = useState<boolean>(
     localStorageDarkMode ? JSON.parse(localStorageDarkMode) : "false"
-  );
+    );
+  const token = localStorage.getItem('@kenziebook:@TOKEN');
 
   const searchProductsList = products.filter((product) =>
     filteredProducts === ''
@@ -38,28 +40,30 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         product.category.toLowerCase().includes(filteredProducts.toLowerCase())
   );
 
-  const navigate = useNavigate();
 
-  const userLoad = async () => {
-    const token = localStorage.getItem('@kenziebook:@TOKEN');
-    if (token === null) {
-      navigate('/');
-    }
-    try {
-      const response = await api.get('/products', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setProducts(response.data);
-      navigate('/shop');
-    } catch (error) {
-      if(axios.isAxiosError(error)){
-        toast.error(error.message)
-      };
-      localStorage.removeItem('@kenziebook:@TOKEN');
-    }
-  };
+
+  useEffect(() => {
+    const userLoad = async () => {
+      try {
+        const response = await api.get('/products', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProducts(response.data);
+        // navigate('/shop');
+      } catch (error) {
+        // console.log("qualquer coisa")
+        // if(axios.isAxiosError(error)){
+        //   toast.error(error.message)
+        // };
+        localStorage.removeItem('@kenziebook:@TOKEN');
+        // localStorage.clear();
+        navigate('/');
+      }
+    };
+    userLoad()
+  },[])
 
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
@@ -129,8 +133,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         searchProductsList,
         clearSearch,
         darkMode, 
-        setDarkMode,
-        userLoad
+        setDarkMode
       }}
     >
       {children}
